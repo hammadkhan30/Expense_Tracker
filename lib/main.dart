@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
 import './widgets/Transaction_list.dart';
+import './widgets/chart.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
                 title: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 18,
-                  fontWeight:FontWeight.bold,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
           appBarTheme: AppBarTheme(
@@ -41,18 +42,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
     //Transaction(
-     // id: 't1',
-      //title: 'new shoes',
-      //amount: 100,
-      //date: DateTime.now(),
+    // id: 't1',
+    //title: 'new shoes',
+    //amount: 100,
+    //date: DateTime.now(),
     //),
     //Transaction(
-      //id: 't2',
-      //title: 'vegetables',
-      //amount: 108.00,
-      //date: DateTime.now(),
+    //id: 't2',
+    //title: 'vegetables',
+    //amount: 108.00,
+    //date: DateTime.now(),
     //)
   ];
+
+  List<Transaction> get _recentTransaction {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -97,14 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Card(
-              color: Colors.blueGrey,
-              child: Container(
-                width: double.infinity,
-                child: Text("Chart"),
-              ),
-              elevation: 5,
-            ),
+            Chart(_recentTransaction),
             TransactionList(_userTransactions),
           ],
         ),
