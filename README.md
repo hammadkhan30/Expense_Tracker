@@ -4,10 +4,9 @@ A new Flutter application that helps you with managing your weekly expenses by k
 
 ## Getting Started
 
-<<<<<<< Updated upstream
 * [Flutter Setup](https://flutter.io/setup/)
 
-* Clone the repo
+* Clone the repository 
 ```
 $ git clone https://github.com/hammadkhan30/Expense_Tracker.git
 $ cd Expense_Tracker/
