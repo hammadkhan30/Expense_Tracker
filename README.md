@@ -1,16 +1,15 @@
 # expense_tracker
 
-A new Flutter application.
+A new Flutter application that helps you with managing your weekly expenses by keeping track on where you spend your money.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+<<<<<<< Updated upstream
+* [Flutter Setup](https://flutter.io/setup/)
 
-A few resources to get you started if this is your first Flutter project:
+* Clone the repo
+```
+$ git clone https://github.com/hammadkhan30/Expense_Tracker.git
+$ cd Expense_Tracker/
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
