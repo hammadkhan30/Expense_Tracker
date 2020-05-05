@@ -7,6 +7,8 @@ class TransactionList extends StatelessWidget {
 
   TransactionList(this.transactions);
 
+  //TODO: Update the name of the file
+  //TODO: Refactor code into clean function, or widgets
   @override
   Widget build(BuildContext context) {
     return Container(

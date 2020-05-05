@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+
+//TODO: check the use of ID
 class Transaction {
   final String id;
   final String title;
