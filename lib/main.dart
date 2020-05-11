@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import './widgets/new_transaction.dart';
+import './controller/new_transaction.dart';
 import './models/transaction.dart';
-import './widgets/Transaction_list.dart';
-import './widgets/chart.dart';
+import './controller/Transaction_list.dart';
+import 'view/chart.dart';
 
 void main() => runApp(MyApp());
 
