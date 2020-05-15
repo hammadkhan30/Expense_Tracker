@@ -40,4 +40,35 @@ class DatabaseHelper {
     $columnDate DATETIME NOT NULL,
     )''');
   }
+
+  Future<int> insert(Transaction transaction) async {
+    Database db = await instance.database;
+    return await db.insert(table, {'title': transaction.title, 'Amount': transaction.amount,'Date':transaction.date});
+  }
+
+  Future<List<Map<String, dynamic>>> queryAllRows() async {
+    Database db = await instance.database;
+    return await db.query(table);
+  }
+
+  Future<List<Map<String, dynamic>>> queryRows(name) async {
+    Database db = await instance.database;
+    return await db.query(table, where: "$columnTitle LIKE '%$title%'");
+  }
+
+  Future<int> queryRowCount() async {
+    Database db = await instance.database;
+    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $table'));
+  }
+
+  Future<int> update(Transaction transaction) async {
+    Database db = await instance.database;
+    int id = transaction.toMap()['id'];
+    return await db.update(table, transaction.toMap(), where: '$columnId = ?', whereArgs: [id]);
+  }
+  
+  Future<int> delete(int id) async {
+    Database db = await instance.database;
+    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+  }
 }
