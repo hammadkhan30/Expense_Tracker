@@ -1,34 +1,38 @@
-import 'package:flutter/foundation.dart';
 import '../controller/dbhelper.dart';
-
 //TODO: check the use of ID
-class Transaction {
+class Transactions {
   String id;
   String title;
   double amount;
   DateTime date;
 
-  Transaction({
+  Transactions({
     this.id,
     this.title,
     this.amount,
     this.date,
   });
 
-  Transaction.fromMap(Map<String, dynamic> map, this.id, this.title, this.amount, this.date) {
-    id = map['id'];
-    title = map['title'];
-    amount = map['amount'];
-    date = map['date'];
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{
+      DatabaseCreator.COLUMN_TITLE: title,
+      DatabaseCreator.COLUMN_AMOUNT: amount,
+      DatabaseCreator.COLUMN_DATE: date,
+    };
+
+    if (id != null) {
+      map[DatabaseCreator.COLUMN_ID] = id;
+    }
+
+    return map;
   }
 
-  Map<String,dynamic> toMap(){
-    return{
-      DatabaseHelper.columnId:id,
-      DatabaseHelper.columnTitle:title,
-      DatabaseHelper.columnAmount:amount,
-      DatabaseHelper.columnDate:date,
-    };
+  Transactions.fromMap(Map<String, dynamic> map) {
+    id = map[DatabaseCreator.COLUMN_ID];
+    title = map[DatabaseCreator.COLUMN_TITLE];
+    amount = map[DatabaseCreator.COLUMN_AMOUNT];
+    date = map[DatabaseCreator.COLUMN_DATE];
   }
+
 
 }

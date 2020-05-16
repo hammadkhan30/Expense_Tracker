@@ -41,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
+  final List<Transactions> _userTransactions = [
     //Transaction(
     // id: 't1',
     //title: 'new shoes',
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //)
   ];
 
-  List<Transaction> get _recentTransaction {
+  List<Transactions> get _recentTransaction {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
-    final newTx = Transaction(
+    final newTx = Transactions(
       title: txTitle,
       amount: txAmount,
       date: chosenDate,
