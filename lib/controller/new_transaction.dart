@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:expense_tracker/models/transaction.dart';
+import 'package:expense_tracker/controller/dbhelper.dart';
 
 //TODO: Separate View and Controller
 //TODO: Controller must interact with the model not view
 class NewTransaction extends StatefulWidget {
   final Function addTx;
-
-  NewTransaction(this.addTx);
-
+  NewTransaction(this.addTx) ;
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }
 
 class _NewTransactionState extends State<NewTransaction> {
+  final dbhelper = DatabaseCreator.instance;
+
+  //controllers used in insert operation UI
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime _selectedDate;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void _submitData() {
     if (_amountController.text.isEmpty) {
@@ -23,7 +28,7 @@ class _NewTransactionState extends State<NewTransaction> {
     }
 
     final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
+    final enteredAmount = _amountController.text;
     if (_titleController.text.isEmpty ||
         double.parse(_amountController.text) <= 0 ||
         _selectedDate == null) {
@@ -34,7 +39,16 @@ class _NewTransactionState extends State<NewTransaction> {
       enteredAmount,
       _selectedDate,
     );
+    _insert(_titleController,_amountController,_selectedDate);
     Navigator.of(context).pop();
+  }
+
+  void _showMessageInScaffold(String message){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text(message),
+        )
+    );
   }
 
   void _presentDatePicker() {
@@ -44,12 +58,12 @@ class _NewTransactionState extends State<NewTransaction> {
       firstDate: DateTime(1970),
       lastDate: DateTime.now(),
     ).then(
-      (pickedDate) {
+          (pickedDate) {
         if (pickedDate == null) {
           return;
         }
         setState(
-          () {
+              () {
             _selectedDate = pickedDate;
           },
         );
@@ -116,4 +130,17 @@ class _NewTransactionState extends State<NewTransaction> {
       ),
     );
   }
+
+  void _insert(_titleController, _amountController, _selectedDate) async {
+    // row to insert
+    Map<String, dynamic> row = {
+      DatabaseCreator.COLUMN_TITLE: _titleController,
+      DatabaseCreator.COLUMN_AMOUNT: _amountController,
+      DatabaseCreator.COLUMN_DATE: _selectedDate,
+    };
+    Transactions transaction = Transactions.fromMap(row);
+    final id = await dbhelper.insert(transaction);
+    _showMessageInScaffold('inserted row id: $id');
+  }
+
 }

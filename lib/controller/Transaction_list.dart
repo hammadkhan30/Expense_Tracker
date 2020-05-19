@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+import '../controller/dbhelper.dart';
 
 class TransactionList extends StatelessWidget {
+  final dbhelper = DatabaseCreator.instance;
   final List<Transactions> transactions;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   TransactionList(this.transactions);
 
@@ -34,6 +38,14 @@ class TransactionList extends StatelessWidget {
             )
           : ListView.builder(
               itemBuilder: (ctx, index) {
+                if (index == transactions.length){
+                  return RaisedButton(
+                    child: Text('Refresh'),
+                    onPressed: () {
+                        _queryAll();
+                    },
+                  );
+                }
                 return Card(
                   child: Row(
                     children: <Widget>[
@@ -75,8 +87,24 @@ class TransactionList extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: transactions.length,
+              itemCount: transactions.length + 1,
             ),
     );
   }
+  void _showMessageInScaffold(String message){
+    _scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text(message),
+        )
+    );
+  }
+
+  void _queryAll() async {
+    final allRows = await dbhelper.queryAllRows();
+    transactions.clear();
+    allRows.forEach((row) => transactions.add(Transactions.fromMap(row)));
+    _showMessageInScaffold('Query done.');
+  }
 }
+
+

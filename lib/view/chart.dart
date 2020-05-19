@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../controller/chart_bar.dart';
 
+
 class Chart extends StatelessWidget {
   final List<Transactions> recentTransactions;
 

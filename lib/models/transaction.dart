@@ -1,38 +1,52 @@
-import '../controller/dbhelper.dart';
+import '../controller/utils.dart';
 //TODO: check the use of ID
 class Transactions {
-  String id;
+  int id;
   String title;
   double amount;
-  DateTime date;
+  String date;
+  int fqYear;
+  int fqMonth;
 
   Transactions({
     this.id,
     this.title,
     this.amount,
     this.date,
+    this.fqYear,
+    this.fqMonth,
+  });
+
+  Transactions.withId({
+    this.id,
+    this.title,
+    this.amount,
+    this.date,
+    this.fqYear,
+    this.fqMonth,
   });
 
   Map<String, dynamic> toMap() {
-    var map = <String, dynamic>{
-      DatabaseCreator.COLUMN_TITLE: title,
-      DatabaseCreator.COLUMN_AMOUNT: amount,
-      DatabaseCreator.COLUMN_DATE: date,
-    };
+    var map = Map<String, dynamic>();
+    map["title"] = this.title;
+    map["amount"] = this.amount;
+    map["date"] = this.date;
+    map["fqYear"] = this.fqYear;
+    map["fqMonth"] = this.fqMonth;
 
     if (id != null) {
-      map[DatabaseCreator.COLUMN_ID] = id;
+      map["id"] = id;
     }
 
     return map;
   }
 
-  Transactions.fromMap(Map<String, dynamic> map) {
-    id = map[DatabaseCreator.COLUMN_ID];
-    title = map[DatabaseCreator.COLUMN_TITLE];
-    amount = map[DatabaseCreator.COLUMN_AMOUNT];
-    date = map[DatabaseCreator.COLUMN_DATE];
+  Transactions.fromOject(dynamic o) {
+    this.id = o["id"];
+    this.title = o["title"];
+    this.amount = o["amount"];
+    this.date = DateUtils.TrimDate(o["date"]);
+    this.fqYear = o["fqYear"];
+    this.fqMonth = o["fqMonth"];
   }
-
-
 }
