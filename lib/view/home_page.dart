@@ -192,7 +192,7 @@ class DocListState extends State<DocList> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-          title: Text("DocExpire"),
+          title: Text("ExpenseTracker"),
           actions: <Widget>[
             PopupMenuButton(
               onSelected: _selectMenu,
