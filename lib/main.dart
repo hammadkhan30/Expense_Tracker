@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                 )),
           )),
-      home: MyHomePage(),
+      home: DocList(),
     );
   }
 }

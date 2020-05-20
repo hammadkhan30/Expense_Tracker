@@ -1,30 +1,30 @@
 import '../controller/utils.dart';
-//TODO: check the use of ID
+
 class Transactions {
   int id;
   String title;
-  double amount;
+  int amount;
   String date;
   int fqYear;
   int fqMonth;
 
-  Transactions({
+  Transactions(
     this.id,
     this.title,
     this.amount,
     this.date,
     this.fqYear,
     this.fqMonth,
-  });
+  );
 
-  Transactions.withId({
+  Transactions.withId(
     this.id,
     this.title,
     this.amount,
     this.date,
     this.fqYear,
     this.fqMonth,
-  });
+  );
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
@@ -41,7 +41,7 @@ class Transactions {
     return map;
   }
 
-  Transactions.fromOject(dynamic o) {
+  Transactions.fromObject(dynamic o) {
     this.id = o["id"];
     this.title = o["title"];
     this.amount = o["amount"];
