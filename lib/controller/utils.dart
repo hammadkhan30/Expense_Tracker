@@ -54,7 +54,7 @@ class DateUtils {
         int.parse(dtItems[1]), int.parse(dtItems[2]));
 
     return d != null && isDate(dt) &&
-        d.isAfter(new DateTime.now());
+        d.isBefore(new DateTime.now());
   }
   static String daysAheadAsStr(int daysAhead) {
     var now = new DateTime.now();
