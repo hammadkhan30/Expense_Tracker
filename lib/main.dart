@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'view/home_page.dart';
+import 'view/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                 )),
           )),
-      home: DocList(),
+      home: HomePage(),
     );
   }
 }
