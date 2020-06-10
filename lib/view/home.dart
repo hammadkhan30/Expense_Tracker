@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage>
           unselectedLabelColor: Colors.white,
           labelColor: Colors.amber,
           tabs: [
-            new Tab(icon: new Icon(Icons.call)),
+            new Tab(icon: new Icon(Icons.home)),
             new Tab(
               icon: new Icon(Icons.chat),
             ),
