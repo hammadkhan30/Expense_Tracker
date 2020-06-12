@@ -190,7 +190,7 @@ class DocListState extends State<DocList> {
     _checkDate();
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      /*resizeToAvoidBottomPadding: false,
       appBar: AppBar(
           title: Text("ExpenseTracker"),
           actions: <Widget>[
@@ -206,7 +206,7 @@ class DocListState extends State<DocList> {
               },
             ),
           ]
-      ),
+      ),*/
       body: Center(
         child: Scaffold(
           body: Stack(
