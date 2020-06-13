@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import './home_page.dart';
 import '../models/transaction.dart';
 import '../controller/dbhelper.dart';
-import '../controller/utils.dart';
-import './new_transaction.dart';
+
+const menuReset = "Reset Local Data";
+List<String> menuOptions = const <String> [
+  menuReset
+];
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,6 +23,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    _tabController = new TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -73,16 +77,23 @@ class _HomePageState extends State<HomePage>
   }
 
   @override
-  void initState() {
-    _tabController = new TabController(length: 3, vsync: this);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("ExpenseTracker"),
+        actions: <Widget>[
+          PopupMenuButton(
+            onSelected: _selectMenu,
+            itemBuilder: (BuildContext context) {
+              return menuOptions.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
         bottom: TabBar(
           unselectedLabelColor: Colors.white,
           labelColor: Colors.amber,
