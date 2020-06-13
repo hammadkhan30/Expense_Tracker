@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 import '../controller/dbhelper.dart';
@@ -105,6 +105,6 @@ class TransactionList extends StatelessWidget {
     allRows.forEach((row) => transactions.add(Transactions.fromMap(row)));
     _showMessageInScaffold('Query done.');
   }
-}
+}*/
 
 

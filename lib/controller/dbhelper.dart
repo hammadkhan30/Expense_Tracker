@@ -32,7 +32,6 @@ class DbHelper {
     return _db;
   }
 
-  // Initialize the database
   Future<Database> initializeDb() async {
     Directory d = await getApplicationDocumentsDirectory();
     String p = d.path + "/docexp.db";
@@ -75,7 +74,6 @@ class DbHelper {
     return r;
   }
 
-  // Gets a Doc based on a String payload
   Future<List> getDocFromStr(String payload) async {
     List<String> p = payload.split("|");
     if (p.length == 2) {

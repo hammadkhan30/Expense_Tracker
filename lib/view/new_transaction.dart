@@ -178,10 +178,8 @@ class DocDetailState extends State<DocDetail> {
                       maxLength: 10,
                       decoration: InputDecoration(
                           icon: const Icon(Icons.calendar_today),
-                          hintText: 'Expiry date (i.e. ' +
-                              DateUtils.daysAheadAsStr(daysAhead) +
-                              ')',
-                          labelText: 'Expiry Date'),
+                          hintText: 'Enter the date',
+                          labelText: 'Enter the  Date'),
                       keyboardType: TextInputType.number,
                       validator: (val) => DateUtils.isValidDate(val)
                           ? null

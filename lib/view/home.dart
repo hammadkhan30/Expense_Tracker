@@ -78,9 +78,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("ExpenseTracker"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("ExpenseTracker"),
         actions: <Widget>[
           PopupMenuButton(
             onSelected: _selectMenu,
@@ -98,9 +98,9 @@ class _HomePageState extends State<HomePage>
           unselectedLabelColor: Colors.white,
           labelColor: Colors.amber,
           tabs: [
-            new Tab(icon: new Icon(Icons.home)),
-            new Tab(icon: new Icon(Icons.chat)),
-            new Tab(icon: new Icon(Icons.notifications)),
+            Tab(icon: Icon(Icons.home)),
+            Tab(icon: Icon(Icons.chat)),
+            Tab(icon: Icon(Icons.notifications)),
           ],
           controller: _tabController,
           indicatorColor: Colors.white,
@@ -110,9 +110,9 @@ class _HomePageState extends State<HomePage>
       ),
       body: TabBarView(
         children: [
-          new DocList(),
-          new Text("This is chat Tab View"),
-          new Text("This is notification Tab View"),
+          DocList(),
+          Text("Monthly info tab"),
+          Text("don't know tab"),
         ],
         controller: _tabController,
       ),
